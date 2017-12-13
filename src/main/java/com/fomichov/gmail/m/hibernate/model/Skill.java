@@ -1,7 +1,5 @@
 package com.fomichov.gmail.m.hibernate.model;
 
-import org.hibernate.annotations.Proxy;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -50,14 +48,5 @@ public class Skill {
 
     public void setDeveloperList(List<Developer> developerList) {
         this.developerList = developerList;
-    }
-
-    @Override
-    public String toString() {
-        return "Skill{" +
-                "id=" + id +
-                ", skill='" + skill + '\'' +
-                ", developerList=" + developerList +
-                '}';
     }
 }

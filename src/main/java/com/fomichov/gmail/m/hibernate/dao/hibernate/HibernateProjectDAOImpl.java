@@ -2,7 +2,7 @@ package com.fomichov.gmail.m.hibernate.dao.hibernate;
 
 import com.fomichov.gmail.m.hibernate.dao.ProjectDAO;
 import com.fomichov.gmail.m.hibernate.model.Project;
-import com.fomichov.gmail.m.hibernate.work.ShowTablesInConsole;
+import com.fomichov.gmail.m.hibernate.work.ShowTableInConsole;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -23,7 +23,7 @@ public class HibernateProjectDAOImpl implements ProjectDAO {
         transaction.commit();
         session.close();
         try {
-            ShowTablesInConsole.showTableProjects();
+            ShowTableInConsole.showTableProjects();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -36,7 +36,7 @@ public class HibernateProjectDAOImpl implements ProjectDAO {
         transaction.commit();
         session.close();
         try {
-            ShowTablesInConsole.showTableProjects();
+            ShowTableInConsole.showTableProjects();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -57,7 +57,7 @@ public class HibernateProjectDAOImpl implements ProjectDAO {
         transaction.commit();
         session.close();
         try {
-            ShowTablesInConsole.showTableProjects();
+            ShowTableInConsole.showTableProjects();
         } catch (SQLException e) {
             e.printStackTrace();
         }

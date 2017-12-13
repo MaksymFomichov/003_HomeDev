@@ -7,7 +7,9 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-class MenuUpdateDataInTable {
+class UpdateDataInTable {
+
+    // обновляем данные по разработчику
     void updateDeveloper() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите id разработчика для обновления данных:");
@@ -23,6 +25,7 @@ class MenuUpdateDataInTable {
         new HibernateDeveloperDAOImpl().update(developer);
     }
 
+    // обновляем данные по компании
     void updateCompany() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите id компании для обновления данных:");
@@ -35,6 +38,7 @@ class MenuUpdateDataInTable {
         new HibernateCompanyDAOImpl().update(company);
     }
 
+    // обновляем данные по заказчику
     void updateCustomer() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите id заказчика для обновления данных:");
@@ -47,6 +51,7 @@ class MenuUpdateDataInTable {
         new HibernateCustomerDAOImpl().update(customer);
     }
 
+    // обновляем данные по проекту
     void updateProject() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите id проекта для обновления данных:");
@@ -62,6 +67,7 @@ class MenuUpdateDataInTable {
         new HibernateProjectDAOImpl().update(project);
     }
 
+    // обновляем данные по навыку
     void updateSkill() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите id навыка для обновления данных:");

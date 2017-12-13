@@ -5,7 +5,9 @@ import com.fomichov.gmail.m.hibernate.dao.hibernate.*;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-class MenuDeleteDataInTable {
+class DeleteDataInTable {
+
+    // удаляем разработчика
     void deleteDeveloper() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите id разработчика для удаления:");
@@ -13,6 +15,7 @@ class MenuDeleteDataInTable {
         new HibernateDeveloperDAOImpl().remove(choice);
     }
 
+    // удаляем компанию
     void deleteCompany() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите id компании для удаления:");
@@ -20,6 +23,7 @@ class MenuDeleteDataInTable {
         new HibernateCompanyDAOImpl().remove(choice);
     }
 
+    // удаляем заказчика
     void deleteCustomer() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите id клиента для удаления:");
@@ -27,6 +31,7 @@ class MenuDeleteDataInTable {
         new HibernateCustomerDAOImpl().remove(choice);
     }
 
+    // удаляем проект
     void deleteProject() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите id проекта для удаления:");
@@ -34,6 +39,7 @@ class MenuDeleteDataInTable {
         new HibernateProjectDAOImpl().remove(choice);
     }
 
+    // удаляем навык
     void deleteSkill() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите id навыка для удаления:");

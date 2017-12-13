@@ -16,26 +16,26 @@ public class Menu {
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
-                ShowTablesInConsole.showTableDevelopers();
+                ShowTableInConsole.showTableDevelopers();
                 break;
             case 2:
-                ShowTablesInConsole.showTableSkills();
+                ShowTableInConsole.showTableSkills();
                 break;
             case 3:
-                ShowTablesInConsole.showTableCompanies();
+                ShowTableInConsole.showTableCompanies();
                 break;
             case 4:
-                ShowTablesInConsole.showTableCustomers();
+                ShowTableInConsole.showTableCustomers();
                 break;
             case 5:
-                ShowTablesInConsole.showTableProjects();
+                ShowTableInConsole.showTableProjects();
                 break;
             case 0:
                 System.exit(0);
         }
     }
 
-    // меню работы с таблицами
+    // меню работы с основными таблицами
     static void workConsoleMenu(String nameTable) throws SQLException {
         System.out.println("\nВыберите, что вы хотите сделать с данными или 0 для возрата в предыдущее меню");
         System.out.println("1 - создать\n2 - изменить\n3 - удалить");
@@ -47,50 +47,50 @@ public class Menu {
         switch (choice) {
             case 1:
                 if (nameTable.equals("developers")) {
-                    new MenuCreateDataInTable().createDeveloper();
+                    new CreateDataInTable().createDeveloper();
                 } else if (nameTable.equals("companies")) {
-                    new MenuCreateDataInTable().createCompany();
+                    new CreateDataInTable().createCompany();
                 } else if (nameTable.equals("customers")) {
-                    new MenuCreateDataInTable().createCustomer();
+                    new CreateDataInTable().createCustomer();
                 } else if (nameTable.equals("projects")) {
-                    new MenuCreateDataInTable().createProject();
+                    new CreateDataInTable().createProject();
                 } else if (nameTable.equals("skills")) {
-                    new MenuCreateDataInTable().createSkill();
+                    new CreateDataInTable().createSkill();
                 }
                 break;
             case 2:
                 if (nameTable.equals("developers")) {
-                    new MenuUpdateDataInTable().updateDeveloper();
+                    new UpdateDataInTable().updateDeveloper();
                 } else if (nameTable.equals("companies")) {
-                    new MenuUpdateDataInTable().updateCompany();
+                    new UpdateDataInTable().updateCompany();
                 } else if (nameTable.equals("customers")) {
-                    new MenuUpdateDataInTable().updateCustomer();
+                    new UpdateDataInTable().updateCustomer();
                 } else if (nameTable.equals("projects")) {
-                    new MenuUpdateDataInTable().updateProject();
+                    new UpdateDataInTable().updateProject();
                 } else if (nameTable.equals("skills")) {
-                    new MenuUpdateDataInTable().updateSkill();
+                    new UpdateDataInTable().updateSkill();
                 }
                 break;
             case 3:
                 if (nameTable.equals("developers")) {
-                    new MenuDeleteDataInTable().deleteDeveloper();
+                    new DeleteDataInTable().deleteDeveloper();
                 } else if (nameTable.equals("companies")) {
-                    new MenuDeleteDataInTable().deleteCompany();
+                    new DeleteDataInTable().deleteCompany();
                 } else if (nameTable.equals("customers")) {
-                    new MenuDeleteDataInTable().deleteCustomer();
+                    new DeleteDataInTable().deleteCustomer();
                 } else if (nameTable.equals("projects")) {
-                    new MenuDeleteDataInTable().deleteProject();
+                    new DeleteDataInTable().deleteProject();
                 } else if (nameTable.equals("skills")) {
-                    new MenuDeleteDataInTable().deleteSkill();
+                    new DeleteDataInTable().deleteSkill();
                 }
                 break;
             case 4:
                 if (nameTable.equals("developers")) {
                     developerExpandedMenuEdit();
                 } else if (nameTable.equals("companies")) {
-//                    companyExpandedMenuEdit();
+                    companyExpandedMenuEdit();
                 } else if (nameTable.equals("customers")) {
-//                    customerExpandedMenuEdit();
+                    customerExpandedMenuEdit();
                 }
                 break;
             case 0:
@@ -124,51 +124,49 @@ public class Menu {
                 new ExpandedShowList().choiceDeveloperToShowListProjects(false, true);
                 break;
             case 0:
-                ShowTablesInConsole.showTableDevelopers();
+                ShowTableInConsole.showTableDevelopers();
         }
     }
 
-//    // меню работы с дополнительными возможностями редактирования для компании
-//    static void companyExpandedMenuEdit() throws SQLException {
-//        System.out.println("\nВыберите, что вы хотите сделать или 0 для возрата в предыдущее меню");
-//        System.out.println("1 - просмотр проектов компании\n2 - добавление проекта компании\n3 - удаления проекта компании");
-//        Scanner scanner = new Scanner(System.in);
-//        int choice = scanner.nextInt();
-//        switch (choice) {
-//            case 1:
-//                new ExpandedShowList().choiceCompanyFromShowListProjects();
-//                break;
-//            case 2:
-//
-//                break;
-//            case 3:
-//
-//                break;
-//
-//            case 0:
-//                ShowTablesInConsole.showTableCompanies();
-//        }
-//    }
-//
-//    // меню работы с дополнительными возможностями редактирования для заказчика
-//    static void customerExpandedMenuEdit() throws SQLException {
-//        System.out.println("\nВыберите, что вы хотите сделать или 0 для возрата в предыдущее меню");
-//        System.out.println("1 - просмотр проектов заказчика\n2 - добавление проекта заказчику\n3 - удаления проекта у заказчика");
-//        Scanner scanner = new Scanner(System.in);
-//        int choice = scanner.nextInt();
-//        switch (choice) {
-//            case 1:
-//                new ExpandedShowList().choiceCustomerFromShowListProjects();
-//                break;
-//            case 2:
-//
-//                break;
-//            case 3:
-//
-//                break;
-//
-//            case 0:
-//                ShowTablesInConsole.showTableCustomers();
-//        }
-//    }
+    // меню работы с дополнительными возможностями редактирования для компании
+    static void companyExpandedMenuEdit() throws SQLException {
+        System.out.println("\nВыберите, что вы хотите сделать или 0 для возрата в предыдущее меню");
+        System.out.println("1 - просмотр проектов компании\n2 - добавление проекта компании\n3 - удаления проекта компании");
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1:
+                new ExpandedShowList().choiceCompanyFromShowListProjects(false, false);
+                break;
+            case 2:
+                new ExpandedShowList().choiceCompanyFromShowListProjects(true, false);
+                break;
+            case 3:
+                new ExpandedShowList().choiceCompanyFromShowListProjects(false, true);
+                break;
+            case 0:
+                ShowTableInConsole.showTableCompanies();
+        }
+    }
+
+    // меню работы с дополнительными возможностями редактирования для заказчика
+    static void customerExpandedMenuEdit() throws SQLException {
+        System.out.println("\nВыберите, что вы хотите сделать или 0 для возрата в предыдущее меню");
+        System.out.println("1 - просмотр проектов заказчика\n2 - добавление проекта заказчику\n3 - удаления проекта у заказчика");
+        Scanner scanner = new Scanner(System.in);
+        int choice = scanner.nextInt();
+        switch (choice) {
+            case 1:
+                new ExpandedShowList().choiceCustomerFromShowListProjects(false, false);
+                break;
+            case 2:
+                new ExpandedShowList().choiceCustomerFromShowListProjects(true, false);
+                break;
+            case 3:
+                new ExpandedShowList().choiceCustomerFromShowListProjects(false, true);
+                break;
+            case 0:
+                ShowTableInConsole.showTableCustomers();
+        }
+    }
 }

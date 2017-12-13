@@ -2,7 +2,7 @@ package com.fomichov.gmail.m.hibernate.dao.hibernate;
 
 import com.fomichov.gmail.m.hibernate.dao.DeveloperDAO;
 import com.fomichov.gmail.m.hibernate.model.Developer;
-import com.fomichov.gmail.m.hibernate.work.ShowTablesInConsole;
+import com.fomichov.gmail.m.hibernate.work.ShowTableInConsole;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -23,7 +23,7 @@ public class HibernateDeveloperDAOImpl implements DeveloperDAO{
         transaction.commit();
         session.close();
         try {
-            ShowTablesInConsole.showTableDevelopers();
+            ShowTableInConsole.showTableDevelopers();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -36,7 +36,7 @@ public class HibernateDeveloperDAOImpl implements DeveloperDAO{
         transaction.commit();
         session.close();
         try {
-            ShowTablesInConsole.showTableDevelopers();
+            ShowTableInConsole.showTableDevelopers();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -57,7 +57,7 @@ public class HibernateDeveloperDAOImpl implements DeveloperDAO{
         transaction.commit();
         session.close();
         try {
-            ShowTablesInConsole.showTableDevelopers();
+            ShowTableInConsole.showTableDevelopers();
         } catch (SQLException e) {
             e.printStackTrace();
         }

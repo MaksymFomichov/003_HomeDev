@@ -2,7 +2,7 @@ package com.fomichov.gmail.m.hibernate.dao.hibernate;
 
 import com.fomichov.gmail.m.hibernate.dao.CompanyDAO;
 import com.fomichov.gmail.m.hibernate.model.Company;
-import com.fomichov.gmail.m.hibernate.work.ShowTablesInConsole;
+import com.fomichov.gmail.m.hibernate.work.ShowTableInConsole;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -23,7 +23,7 @@ public class HibernateCompanyDAOImpl implements CompanyDAO {
         transaction.commit();
         session.close();
         try {
-            ShowTablesInConsole.showTableCompanies();
+            ShowTableInConsole.showTableCompanies();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -36,7 +36,7 @@ public class HibernateCompanyDAOImpl implements CompanyDAO {
         transaction.commit();
         session.close();
         try {
-            ShowTablesInConsole.showTableCompanies();
+            ShowTableInConsole.showTableCompanies();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -57,7 +57,7 @@ public class HibernateCompanyDAOImpl implements CompanyDAO {
         transaction.commit();
         session.close();
         try {
-            ShowTablesInConsole.showTableCompanies();
+            ShowTableInConsole.showTableCompanies();
         } catch (SQLException e) {
             e.printStackTrace();
         }

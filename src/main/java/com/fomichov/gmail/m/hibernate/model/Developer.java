@@ -1,7 +1,5 @@
 package com.fomichov.gmail.m.hibernate.model;
 
-import org.hibernate.annotations.Proxy;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;

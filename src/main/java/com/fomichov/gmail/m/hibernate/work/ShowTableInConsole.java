@@ -7,7 +7,7 @@ import com.fomichov.gmail.m.hibernate.model.*;
 import java.sql.SQLException;
 import java.util.List;
 
-public class ShowTablesInConsole {
+public class ShowTableInConsole {
 
     // полные таблицы базы
 
@@ -81,9 +81,10 @@ public class ShowTablesInConsole {
         Menu.workConsoleMenu("projects");
     }
 
+
     // таблицы по запросам
 
-    // выводим в консоль таблицу навыков выбранного разработчика
+    // выводим все навыки выбранного разработчика
     public static void showTableDevelopersSkills(Developer developer, Boolean deleteSkill) throws SQLException {
         System.out.println("\nнавыки разработчика - " + "\"" + developer.getName() + "\"");
         System.out.format("%s%10s", "id", "skill");
@@ -99,12 +100,12 @@ public class ShowTablesInConsole {
         if (!deleteSkill) {
             Menu.developerExpandedMenuEdit();
         } else {
-            MenuInside.choiceDeleteSkillFromDeveloper(developer.getId());
+            EditingDataObject.deleteSkillFromDeveloper(developer.getId());
         }
     }
 
     // выводим все проекты выбранного разработчика
-    static void showTableDevelopersProjects(Developer developer, Boolean deleteProject) throws SQLException {
+    static void showTableDeveloperProjects(Developer developer, Boolean deleteProject) throws SQLException {
         System.out.println("\nпроекты разработчика - " + "\"" + developer.getName() + "\"");
         System.out.format("%s%10s", "id", "project");
         System.out.println("\n-----------------");
@@ -119,46 +120,54 @@ public class ShowTablesInConsole {
         if (!deleteProject) {
             Menu.developerExpandedMenuEdit();
         } else {
-            MenuInside.choiceDeleteProjectFromDeveloper(developer.getId());
+            EditingDataObject.deleteProjectFromDeveloper(developer.getId());
         }
     }
-//
-//    // выводим все проекты выбранной компании
-//    static void showTableCompanyProjects(Company company) throws SQLException {
-//        System.out.println("\nпроекты компании - " + "\"" + company.getCompany() + "\"");
-//        System.out.format("%s%10s", "id", "projects");
-//        System.out.println("\n-----------------");
-//        if (company.getProjectList().isEmpty()) {
-//            System.out.println("У компании нет проектов");
-//        } else {
-//            for (Project value : company.getProjectList()) {
-//                System.out.format("%d%10s", value.getId(), value.getProject());
-//                System.out.println();
-//            }
-//        }
-//        Menu.companyExpandedMenuEdit();
-//    }
-//
-//    // выводим все проекты выбранного заказчика
-//    static void showTableCustomerProjects(Customer customer) throws SQLException {
-//        System.out.println("\nпроекты заказчика - " + "\"" + customer.getCustomer() + "\"");
-//        System.out.format("%s%10s", "id", "projects");
-//        System.out.println("\n-----------------");
-//        if (customer.getProjectList().isEmpty()) {
-//            System.out.println("У заказчика нет проектов");
-//        } else {
-//            for (Project value : customer.getProjectList()) {
-//                System.out.format("%d%10s", value.getId(), value.getProject());
-//                System.out.println();
-//            }
-//        }
-//        Menu.customerExpandedMenuEdit();
-//    }
-//
-//
+
+    // выводим все проекты выбранной компании
+    static void showTableCompanyProjects(Company company, Boolean deleteProject) throws SQLException {
+        System.out.println("\nпроекты компании - " + "\"" + company.getCompany() + "\"");
+        System.out.format("%s%10s", "id", "projects");
+        System.out.println("\n-----------------");
+        if (company.getProjectList().isEmpty()) {
+            System.out.println("У компании нет проектов");
+        } else {
+            for (Project value : company.getProjectList()) {
+                System.out.format("%d%10s", value.getId(), value.getProject());
+                System.out.println();
+            }
+        }
+        if (!deleteProject) {
+            Menu.companyExpandedMenuEdit();
+        } else {
+            EditingDataObject.deleteProjectFromCompany(company.getId());
+        }
+    }
+
+    // выводим все проекты выбранного заказчика
+    static void showTableCustomerProjects(Customer customer, Boolean deleteProject) throws SQLException {
+        System.out.println("\nпроекты заказчика - " + "\"" + customer.getCustomer() + "\"");
+        System.out.format("%s%10s", "id", "projects");
+        System.out.println("\n-----------------");
+        if (customer.getProjectList().isEmpty()) {
+            System.out.println("У заказчика нет проектов");
+        } else {
+            for (Project value : customer.getProjectList()) {
+                System.out.format("%d%10s", value.getId(), value.getProject());
+                System.out.println();
+            }
+        }
+        if (!deleteProject) {
+            Menu.customerExpandedMenuEdit();
+        } else {
+            EditingDataObject.deleteProjectFromCustomer(customer.getId());
+        }
+    }
+
+
     // таблицы с сложными запросами и внутренеей обработкой
 
-    // выводим в консоль таблицу Skills за исключением навыков выбранного разработчика
+    // выводим все навыки за исключением навыков выбранного разработчика
     static void showTableSkillsButNoChoiceDeveloper(Long developerId) throws SQLException {
         List<Skill> skillList = new HibernateSkillDAOImpl().getAll();
         List<Skill> developerSkillList = new HibernateDeveloperDAOImpl().getById(developerId).getSkillList();
@@ -183,10 +192,10 @@ public class ShowTablesInConsole {
             System.out.println();
         }
 
-        MenuInside.choiceAddSkillFromDeveloper(developerId);
+        EditingDataObject.addSkillToDeveloper(developerId);
     }
 
-    // выводим в консоль таблицу Skills за исключением навыков выбранного разработчика
+    // выводим все проекты за исключением проектов выбранного разработчика
     static void showTableProjectsButNoChoiceDeveloper(Long developerId) throws SQLException {
         List<Project> projectList = new HibernateProjectDAOImpl().getAll();
         List<Project> developerProjectList = new HibernateDeveloperDAOImpl().getById(developerId).getProjectList();
@@ -195,7 +204,7 @@ public class ShowTablesInConsole {
         System.out.format("%s%15s", "id", "project");
         System.out.println("\n-------------------");
 
-        // чистим лист навыков от повторов с навыками разработчика
+        // чистим лист проектов от повторов с проектами разработчика
         for (int i = 0; i < developerProjectList.size(); i++) {
             for (int j = 0; j < projectList.size(); j++) {
                 if (developerProjectList.get(i).getProject().equals(projectList.get(j).getProject())) {
@@ -205,12 +214,68 @@ public class ShowTablesInConsole {
             }
         }
 
-        // выводим лист без повторов навыков которые есть у разработчика
+        // выводим лист без повторов проектов которые есть у разработчика
         for (Project value : projectList) {
             System.out.format("%d%15s", value.getId(), value.getProject());
             System.out.println();
         }
 
-        MenuInside.choiceAddProjectFromDeveloper(developerId);
+        EditingDataObject.addProjectToDeveloper(developerId);
+    }
+
+    // выводим все проекты за исключением проектов выбранной компании
+    static void showTableProjectsButNoChoiceCompany(Long companyId) throws SQLException {
+        List<Project> projectList = new HibernateProjectDAOImpl().getAll();
+        List<Project> companyProjectList = new HibernateCompanyDAOImpl().getById(companyId).getProjectList();
+
+        System.out.println("\nтаблица - \"projects\"");
+        System.out.format("%s%15s", "id", "project");
+        System.out.println("\n-------------------");
+
+        // чистим лист проектов от повторов с проектами разработчика
+        for (int i = 0; i < companyProjectList.size(); i++) {
+            for (int j = 0; j < projectList.size(); j++) {
+                if (companyProjectList.get(i).getProject().equals(projectList.get(j).getProject())) {
+                    projectList.remove(j);
+                    break;
+                }
+            }
+        }
+
+        // выводим лист без повторов проектов которые есть у разработчика
+        for (Project value : projectList) {
+            System.out.format("%d%15s", value.getId(), value.getProject());
+            System.out.println();
+        }
+
+        EditingDataObject.addProjectToCompany(companyId);
+    }
+
+    // выводим все проекты за исключением проектов выбранного заказчика
+    static void showTableProjectsButNoChoiceCustomer(Long customerId) throws SQLException {
+        List<Project> projectList = new HibernateProjectDAOImpl().getAll();
+        List<Project> customerProjectList = new HibernateCustomerDAOImpl().getById(customerId).getProjectList();
+
+        System.out.println("\nтаблица - \"projects\"");
+        System.out.format("%s%15s", "id", "project");
+        System.out.println("\n-------------------");
+
+        // чистим лист проектов от повторов с проектами разработчика
+        for (int i = 0; i < customerProjectList.size(); i++) {
+            for (int j = 0; j < projectList.size(); j++) {
+                if (customerProjectList.get(i).getProject().equals(projectList.get(j).getProject())) {
+                    projectList.remove(j);
+                    break;
+                }
+            }
+        }
+
+        // выводим лист без повторов проектов которые есть у заказчика
+        for (Project value : projectList) {
+            System.out.format("%d%15s", value.getId(), value.getProject());
+            System.out.println();
+        }
+
+        EditingDataObject.addProjectToCustomer(customerId);
     }
 }

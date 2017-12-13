@@ -7,8 +7,9 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Scanner;
 
-class MenuCreateDataInTable {
+class CreateDataInTable {
 
+    // создаем разработчика
     void createDeveloper() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         Developer developer = new Developer();
@@ -21,6 +22,7 @@ class MenuCreateDataInTable {
         new HibernateDeveloperDAOImpl().save(developer);
     }
 
+    // создаем компанию
     void createCompany() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         Company company = new Company();
@@ -30,6 +32,7 @@ class MenuCreateDataInTable {
         new HibernateCompanyDAOImpl().save(company);
     }
 
+    // создаем заказчика
     void createCustomer() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         Customer customer = new Customer();
@@ -39,6 +42,7 @@ class MenuCreateDataInTable {
         new HibernateCustomerDAOImpl().save(customer);
     }
 
+    // создаем проект
     void createProject() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         Project project = new Project();
@@ -51,6 +55,7 @@ class MenuCreateDataInTable {
         new HibernateProjectDAOImpl().save(project);
     }
 
+    // создаем навык
     void createSkill() throws SQLException {
         Scanner scanner = new Scanner(System.in);
         Skill skill = new Skill();

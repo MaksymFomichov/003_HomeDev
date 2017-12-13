@@ -1,7 +1,11 @@
 package com.fomichov.gmail.m.hibernate.work;
 
 
+import com.fomichov.gmail.m.hibernate.dao.hibernate.HibernateCompanyDAOImpl;
+import com.fomichov.gmail.m.hibernate.dao.hibernate.HibernateCustomerDAOImpl;
 import com.fomichov.gmail.m.hibernate.dao.hibernate.HibernateDeveloperDAOImpl;
+import com.fomichov.gmail.m.hibernate.model.Company;
+import com.fomichov.gmail.m.hibernate.model.Customer;
 import com.fomichov.gmail.m.hibernate.model.Developer;
 
 import java.sql.SQLException;
@@ -9,47 +13,55 @@ import java.util.Scanner;
 
 class ExpandedShowList {
 
-    // выбираем id разработчика для которого будет показываться определенный список навыков
+    // получаем id разработчика и показываем таблицу навыков в зависимости от выбора пользователя
     void choiceDeveloperToShowListSkills(Boolean addSkill, Boolean deleteSkill) throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nВведите id разработчика:");
         Long idDeveloper = scanner.nextLong();
         Developer developer = new HibernateDeveloperDAOImpl().getById(idDeveloper);
         if (!addSkill) {
-            ShowTablesInConsole.showTableDevelopersSkills(developer, deleteSkill); // выводим в консоль таблицу навыков выбранного разработчика
+            ShowTableInConsole.showTableDevelopersSkills(developer, deleteSkill); // выводим таблицу навыков выбранного разработчика
         } else {
-            ShowTablesInConsole.showTableSkillsButNoChoiceDeveloper(idDeveloper);
+            ShowTableInConsole.showTableSkillsButNoChoiceDeveloper(idDeveloper); // выводим таблицу навыков без навыков выбранного разработчика
         }
     }
 
-    // выбираем id разработчика для которого будет показываться определенный список проектов
+    // получаем id разработчика и показываем таблицу проектов в зависимости от выбора пользователя
     void choiceDeveloperToShowListProjects(Boolean addProject, Boolean deleteProject) throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nВведите id разработчика:");
         Long idDeveloper = scanner.nextLong();
         Developer developer = new HibernateDeveloperDAOImpl().getById(idDeveloper);
         if (!addProject) {
-            ShowTablesInConsole.showTableDevelopersProjects(developer, deleteProject); // выводим в консоль таблицу проектов выбранного разработчика
+            ShowTableInConsole.showTableDeveloperProjects(developer, deleteProject);
         } else {
-            ShowTablesInConsole.showTableProjectsButNoChoiceDeveloper(idDeveloper);
+            ShowTableInConsole.showTableProjectsButNoChoiceDeveloper(idDeveloper);
         }
     }
-//
-//    // выбираем id компании для которой будут показаны проекты
-//    void choiceCompanyFromShowListProjects() throws SQLException {
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("\nВведите id компании:");
-//        Long idCompany = scanner.nextLong();
-//        Company company = new JdbcCompanyDAOImpl().getById(idCompany);
-//        ShowTablesInConsole.showTableCompanyProjects(company);
-//    }
-//
-//    // выбираем id заказчика для которой будут показаны проекты
-//    void choiceCustomerFromShowListProjects() throws SQLException {
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("\nВведите id заказчика:");
-//        Long idCustomer = scanner.nextLong();
-//        Customer customer = new JdbcCustomerDAOImpl().getById(idCustomer);
-//        ShowTablesInConsole.showTableCustomerProjects(customer);
-//    }
+
+    // получаем id компании и показываем таблицу проектов в зависимости от выбора пользователя
+    void choiceCompanyFromShowListProjects(Boolean addProject, Boolean deleteProject) throws SQLException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\nВведите id компании:");
+        Long idCompany = scanner.nextLong();
+        Company company = new HibernateCompanyDAOImpl().getById(idCompany);
+        if (!addProject) {
+            ShowTableInConsole.showTableCompanyProjects(company, deleteProject);
+        } else {
+            ShowTableInConsole.showTableProjectsButNoChoiceCompany(idCompany);
+        }
+    }
+
+    // получаем id зазазчика и показываем таблицу проектов в зависимости от выбора пользователя
+    void choiceCustomerFromShowListProjects(Boolean addProject, Boolean deleteProject) throws SQLException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\nВведите id заказчика:");
+        Long idCustomer = scanner.nextLong();
+        Customer customer = new HibernateCustomerDAOImpl().getById(idCustomer);
+        if (!addProject) {
+            ShowTableInConsole.showTableCustomerProjects(customer, deleteProject);
+        } else {
+            ShowTableInConsole.showTableProjectsButNoChoiceCustomer(idCustomer);
+        }
+    }
 }
