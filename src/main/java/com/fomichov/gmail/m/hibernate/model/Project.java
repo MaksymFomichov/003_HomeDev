@@ -1,5 +1,7 @@
 package com.fomichov.gmail.m.hibernate.model;
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
@@ -18,13 +20,13 @@ public class Project {
     @Column(name = "project")
     private String project;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, mappedBy = "projectList", targetEntity = Developer.class)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE }, mappedBy = "projectList", targetEntity = Developer.class)
     private List<Developer> developerList;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, mappedBy = "projectList", targetEntity = Company.class)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE }, mappedBy = "projectList", targetEntity = Company.class)
     private List<Company> companyList;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, mappedBy = "projectList", targetEntity = Customer.class)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE }, mappedBy = "projectList", targetEntity = Customer.class)
     private List<Customer> customerList;
 
     public Project() {

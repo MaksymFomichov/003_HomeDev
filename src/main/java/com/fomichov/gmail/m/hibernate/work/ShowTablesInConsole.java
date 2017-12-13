@@ -104,9 +104,9 @@ public class ShowTablesInConsole {
     }
 
     // выводим все проекты выбранного разработчика
-    static void showTableDevelopersProjects(Developer developer) throws SQLException {
+    static void showTableDevelopersProjects(Developer developer, Boolean deleteProject) throws SQLException {
         System.out.println("\nпроекты разработчика - " + "\"" + developer.getName() + "\"");
-        System.out.format("%s%10s", "id", "projects");
+        System.out.format("%s%10s", "id", "project");
         System.out.println("\n-----------------");
         if (developer.getProjectList().isEmpty()) {
             System.out.println("У разработчика нет проектов");
@@ -116,7 +116,11 @@ public class ShowTablesInConsole {
                 System.out.println();
             }
         }
-        Menu.developerExpandedMenuEdit();
+        if (!deleteProject) {
+            Menu.developerExpandedMenuEdit();
+        } else {
+            MenuInside.choiceDeleteProjectFromDeveloper(developer.getId());
+        }
     }
 //
 //    // выводим все проекты выбранной компании
@@ -180,5 +184,33 @@ public class ShowTablesInConsole {
         }
 
         MenuInside.choiceAddSkillFromDeveloper(developerId);
+    }
+
+    // выводим в консоль таблицу Skills за исключением навыков выбранного разработчика
+    static void showTableProjectsButNoChoiceDeveloper(Long developerId) throws SQLException {
+        List<Project> projectList = new HibernateProjectDAOImpl().getAll();
+        List<Project> developerProjectList = new HibernateDeveloperDAOImpl().getById(developerId).getProjectList();
+
+        System.out.println("\nтаблица - \"projects\"");
+        System.out.format("%s%15s", "id", "project");
+        System.out.println("\n-------------------");
+
+        // чистим лист навыков от повторов с навыками разработчика
+        for (int i = 0; i < developerProjectList.size(); i++) {
+            for (int j = 0; j < projectList.size(); j++) {
+                if (developerProjectList.get(i).getProject().equals(projectList.get(j).getProject())) {
+                    projectList.remove(j);
+                    break;
+                }
+            }
+        }
+
+        // выводим лист без повторов навыков которые есть у разработчика
+        for (Project value : projectList) {
+            System.out.format("%d%15s", value.getId(), value.getProject());
+            System.out.println();
+        }
+
+        MenuInside.choiceAddProjectFromDeveloper(developerId);
     }
 }

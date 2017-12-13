@@ -22,14 +22,18 @@ class ExpandedShowList {
         }
     }
 
-//    // выбираем id разработчика для которого будет показываться определенный список проектов
-//    void choiceDeveloperToShowListProjects() throws SQLException {
-//        Scanner scanner = new Scanner(System.in);
-//        System.out.println("\nВведите id разработчика:");
-//        Long idDeveloper = scanner.nextLong();
-//        Developer developer = new JdbcDeveloperDAOImpl().getById(idDeveloper);
-//        ShowTablesInConsole.showTableDevelopersProjects(developer);
-//    }
+    // выбираем id разработчика для которого будет показываться определенный список проектов
+    void choiceDeveloperToShowListProjects(Boolean addProject, Boolean deleteProject) throws SQLException {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("\nВведите id разработчика:");
+        Long idDeveloper = scanner.nextLong();
+        Developer developer = new HibernateDeveloperDAOImpl().getById(idDeveloper);
+        if (!addProject) {
+            ShowTablesInConsole.showTableDevelopersProjects(developer, deleteProject); // выводим в консоль таблицу проектов выбранного разработчика
+        } else {
+            ShowTablesInConsole.showTableProjectsButNoChoiceDeveloper(idDeveloper);
+        }
+    }
 //
 //    // выбираем id компании для которой будут показаны проекты
 //    void choiceCompanyFromShowListProjects() throws SQLException {

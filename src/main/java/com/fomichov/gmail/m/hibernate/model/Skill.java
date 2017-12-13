@@ -1,5 +1,7 @@
 package com.fomichov.gmail.m.hibernate.model;
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class Skill {
     @Column(name = "skill")
     private String skill;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.ALL }, mappedBy = "skillList", targetEntity = Developer.class)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.MERGE }, mappedBy = "skillList", targetEntity = Developer.class)
     private List<Developer> developerList;
 
     public Skill() {

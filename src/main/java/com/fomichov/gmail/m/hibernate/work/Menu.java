@@ -115,15 +115,14 @@ public class Menu {
                 new ExpandedShowList().choiceDeveloperToShowListSkills(false, true);
                 break;
             case 4:
-//                new ExpandedShowList().choiceDeveloperToShowListProjects();
-                break;
+                new ExpandedShowList().choiceDeveloperToShowListProjects(false, false);
+            break;
             case 5:
-
+                new ExpandedShowList().choiceDeveloperToShowListProjects(true, false);
                 break;
             case 6:
-
+                new ExpandedShowList().choiceDeveloperToShowListProjects(false, true);
                 break;
-
             case 0:
                 ShowTablesInConsole.showTableDevelopers();
         }

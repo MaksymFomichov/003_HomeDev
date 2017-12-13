@@ -1,5 +1,7 @@
 package com.fomichov.gmail.m.hibernate.model;
 
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -14,7 +16,7 @@ public class Customer {
     @Column(name = "customer")
     private String customer;
 
-    @ManyToMany(fetch = FetchType.LAZY, targetEntity = Project.class, cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.LAZY, targetEntity = Project.class, cascade = {CascadeType.MERGE})
     @JoinTable(name = "customers_projects", joinColumns = @JoinColumn(name = "customers_id"), inverseJoinColumns = @JoinColumn(name = "projects_id"))
     private List<Project> projectList;
 
