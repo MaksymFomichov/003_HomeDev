@@ -5,6 +5,7 @@ import com.fomichov.gmail.m.hibernate.dao.hibernate.*;
 import com.fomichov.gmail.m.hibernate.model.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShowTableInConsole {
@@ -18,11 +19,14 @@ public class ShowTableInConsole {
         System.out.println("\nтаблица - \"developers\"");
         System.out.format("%s%10s%10s", "id", "name", "salary");
         System.out.println("\n----------------------");
+        List<Long> listId = new ArrayList<Long>();
         for (Developer value : developerList) {
             System.out.format("%d%10s%10s", value.getId(), value.getName(), value.getSalary());
             System.out.println();
+            listId.add(value.getId());
         }
-        Menu.workConsoleMenu("developers");
+
+        Menu.workConsoleMenu("developers", listId);
     }
 
     // выводим в консоль таблицу Skills
@@ -32,11 +36,13 @@ public class ShowTableInConsole {
         System.out.println("\nтаблица - \"skills\"");
         System.out.format("%s%15s", "id", "skill");
         System.out.println("\n-------------------");
+        List<Long> listId = new ArrayList<Long>();
         for (Skill value : skillList) {
             System.out.format("%d%15s", value.getId(), value.getSkill());
             System.out.println();
+            listId.add(value.getId());
         }
-        Menu.workConsoleMenu("skills");
+        Menu.workConsoleMenu("skills", listId);
     }
 
     // выводим в консоль таблицу Companies
@@ -46,11 +52,13 @@ public class ShowTableInConsole {
         System.out.println("\nтаблица - \"companies\"");
         System.out.format("%s%10s", "id", "company");
         System.out.println("\n--------------");
+        List<Long> listId = new ArrayList<Long>();
         for (Company value : companyList) {
             System.out.format("%d%10s", value.getId(), value.getCompany());
             System.out.println();
+            listId.add(value.getId());
         }
-        Menu.workConsoleMenu("companies");
+        Menu.workConsoleMenu("companies", listId);
     }
 
     // выводим в консоль таблицу Customers
@@ -60,11 +68,13 @@ public class ShowTableInConsole {
         System.out.println("\nтаблица - \"customers\"");
         System.out.format("%s%15s", "id", "customer");
         System.out.println("\n--------------");
+        List<Long> listId = new ArrayList<Long>();
         for (Customer value : customerList) {
             System.out.format("%d%15s", value.getId(), value.getCustomer());
             System.out.println();
+            listId.add(value.getId());
         }
-        Menu.workConsoleMenu("customers");
+        Menu.workConsoleMenu("customers", listId);
     }
 
     // выводим в консоль таблицу Projects
@@ -74,11 +84,13 @@ public class ShowTableInConsole {
         System.out.println("\nтаблица - \"projects\"");
         System.out.format("%s%10s%15s", "id", "cost", "project");
         System.out.println("\n----------------------------");
+        List<Long> listId = new ArrayList<Long>();
         for (Project value : projectList) {
             System.out.format("%d%10s%15s", value.getId(), value.getCost(), value.getProject());
             System.out.println();
+            listId.add(value.getId());
         }
-        Menu.workConsoleMenu("projects");
+        Menu.workConsoleMenu("projects", listId);
     }
 
 

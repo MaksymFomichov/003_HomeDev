@@ -16,7 +16,7 @@ class CreateDataInTable {
         System.out.println("Введите имя разработчика:");
         String name = scanner.nextLine();
         System.out.println("Введите зарплату разработчика:");
-        BigDecimal salary = scanner.nextBigDecimal();
+        BigDecimal salary = MyUtils.checkBigDecimal();
         developer.setName(name);
         developer.setSalary(salary);
         new HibernateDeveloperDAOImpl().save(developer);
@@ -49,7 +49,7 @@ class CreateDataInTable {
         System.out.println("Введите название проекта:");
         String name = scanner.nextLine();
         System.out.println("Введите стоимость проекта:");
-        BigDecimal cost = scanner.nextBigDecimal();
+        BigDecimal cost = MyUtils.checkBigDecimal();
         project.setProject(name);
         project.setCost(cost);
         new HibernateProjectDAOImpl().save(project);

@@ -1,7 +1,7 @@
 package com.fomichov.gmail.m.hibernate.work;
 
 import java.sql.SQLException;
-import java.util.Scanner;
+import java.util.List;
 
 public class Menu {
 
@@ -12,8 +12,8 @@ public class Menu {
         for (int i = 0; i < listTable.length; i++) {
             System.out.println((i + 1) + " - " + listTable[i]);
         }
-        Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
+        int listChoice [] = {1, 2, 3, 4, 5 , 0};
+        int choice = MyUtils.checkChoice(listChoice);
         switch (choice) {
             case 1:
                 ShowTableInConsole.showTableDevelopers();
@@ -36,14 +36,15 @@ public class Menu {
     }
 
     // меню работы с основными таблицами
-    static void workConsoleMenu(String nameTable) throws SQLException {
+    static void workConsoleMenu(String nameTable, List<Long> listId) throws SQLException {
         System.out.println("\nВыберите, что вы хотите сделать с данными или 0 для возрата в предыдущее меню");
         System.out.println("1 - создать\n2 - изменить\n3 - удалить");
+        int listChoice [] = {1, 2, 3, 0};
         if (nameTable.equals("developers") || nameTable.equals("companies") || nameTable.equals("customers")) {
             System.out.println("4 - расширенное редактирование");
+            listChoice = new int[]{1, 2, 3, 4, 0};
         }
-        Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
+        int choice = MyUtils.checkChoice(listChoice);
         switch (choice) {
             case 1:
                 if (nameTable.equals("developers")) {
@@ -60,28 +61,28 @@ public class Menu {
                 break;
             case 2:
                 if (nameTable.equals("developers")) {
-                    new UpdateDataInTable().updateDeveloper();
+                    new UpdateDataInTable().updateDeveloper(listId);
                 } else if (nameTable.equals("companies")) {
-                    new UpdateDataInTable().updateCompany();
+                    new UpdateDataInTable().updateCompany(listId);
                 } else if (nameTable.equals("customers")) {
-                    new UpdateDataInTable().updateCustomer();
+                    new UpdateDataInTable().updateCustomer(listId);
                 } else if (nameTable.equals("projects")) {
-                    new UpdateDataInTable().updateProject();
+                    new UpdateDataInTable().updateProject(listId);
                 } else if (nameTable.equals("skills")) {
-                    new UpdateDataInTable().updateSkill();
+                    new UpdateDataInTable().updateSkill(listId);
                 }
                 break;
             case 3:
                 if (nameTable.equals("developers")) {
-                    new DeleteDataInTable().deleteDeveloper();
+                    new DeleteDataInTable().deleteDeveloper(listId);
                 } else if (nameTable.equals("companies")) {
-                    new DeleteDataInTable().deleteCompany();
+                    new DeleteDataInTable().deleteCompany(listId);
                 } else if (nameTable.equals("customers")) {
-                    new DeleteDataInTable().deleteCustomer();
+                    new DeleteDataInTable().deleteCustomer(listId);
                 } else if (nameTable.equals("projects")) {
-                    new DeleteDataInTable().deleteProject();
+                    new DeleteDataInTable().deleteProject(listId);
                 } else if (nameTable.equals("skills")) {
-                    new DeleteDataInTable().deleteSkill();
+                    new DeleteDataInTable().deleteSkill(listId);
                 }
                 break;
             case 4:
@@ -102,8 +103,8 @@ public class Menu {
     static void developerExpandedMenuEdit() throws SQLException {
         System.out.println("\nВыберите, что вы хотите сделать или 0 для возрата в предыдущее меню");
         System.out.println("1 - просмотр навыков разрабочика\n2 - добавление навыка разработчику\n3 - удаления навыка у разработчика\n4 - просмотр проектов разработчика\n5 - добавления проекта разработчику\n6 - удаление проекта у разработчика");
-        Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
+        int listChoice [] = {1, 2, 3, 4, 5, 6, 0};
+        int choice = MyUtils.checkChoice(listChoice);
         switch (choice) {
             case 1:
                 new ExpandedShowList().choiceDeveloperToShowListSkills(false, false);
@@ -132,8 +133,8 @@ public class Menu {
     static void companyExpandedMenuEdit() throws SQLException {
         System.out.println("\nВыберите, что вы хотите сделать или 0 для возрата в предыдущее меню");
         System.out.println("1 - просмотр проектов компании\n2 - добавление проекта компании\n3 - удаления проекта компании");
-        Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
+        int listChoice [] = {1, 2, 3, 0};
+        int choice = MyUtils.checkChoice(listChoice);
         switch (choice) {
             case 1:
                 new ExpandedShowList().choiceCompanyFromShowListProjects(false, false);
@@ -153,8 +154,8 @@ public class Menu {
     static void customerExpandedMenuEdit() throws SQLException {
         System.out.println("\nВыберите, что вы хотите сделать или 0 для возрата в предыдущее меню");
         System.out.println("1 - просмотр проектов заказчика\n2 - добавление проекта заказчику\n3 - удаления проекта у заказчика");
-        Scanner scanner = new Scanner(System.in);
-        int choice = scanner.nextInt();
+        int listChoice [] = {1, 2, 3, 0};
+        int choice = MyUtils.checkChoice(listChoice);
         switch (choice) {
             case 1:
                 new ExpandedShowList().choiceCustomerFromShowListProjects(false, false);
